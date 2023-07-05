@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/Galbeyte1/gRPC-microservices/internal/db"
@@ -11,11 +10,13 @@ import (
 func Run() error {
 	// responsible for initializing and starting
 	// our gRPC server
-	fmt.Println("Rocket Service Starting...")
+	log.Println("Rocket Service Starting...")
 	rocketStore, err := db.New()
 	if err != nil {
+		log.Println("Failed to instantiate Database")
 		return err
 	}
+	log.Println("Instantiated Database")
 
 	err = rocketStore.Migrate()
 	if err != nil {
@@ -23,6 +24,7 @@ func Run() error {
 		return err
 	}
 	_ = rocket.New(rocketStore)
+	log.Println("Migrations complete")
 	return nil
 }
 

@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/Galbeyte1/gRPC-microservices/internal/rocket"
@@ -18,7 +19,7 @@ func New() (Store, error) {
 	dbUsername := os.Getenv("DB_USERNAME")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbHost := os.Getenv("DB_HOST")
-	dbTable := os.Getenv("DB_PORT")
+	dbTable := os.Getenv("DB_TABLE")
 	dbPort := os.Getenv("DB_PORT")
 	dbSSLMode := os.Getenv("DB_SSL_MODE")
 
@@ -34,8 +35,10 @@ func New() (Store, error) {
 
 	db, err := sqlx.Connect("postgres", connectionString)
 	if err != nil {
+		log.Printf("Failed to connect to postgres. Connection string: %s", connectionString)
 		return Store{}, err
 	}
+	log.Println("Connected to postgres")
 	return Store{
 		db: db,
 	}, nil

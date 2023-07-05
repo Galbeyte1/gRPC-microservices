@@ -17,7 +17,7 @@ services:
   
   api:
     build: .
-    container_name: "grpc-microservice"
+    container_name: "gRPC-microservice"
     environment:
       DB_USERNAME: "postgres"
       DB_PASSWORD: "postgres"
