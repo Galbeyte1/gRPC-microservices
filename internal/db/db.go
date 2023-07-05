@@ -23,7 +23,7 @@ func New() (Store, error) {
 	dbSSLMode := os.Getenv("DB_SSL_MODE")
 
 	connectionString := fmt.Sprintf(
-		"host=%s port=%s user%s dbname=%s password=%s sslmode=%s",
+		"host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
 		dbHost,
 		dbPort,
 		dbUsername,

@@ -18,7 +18,7 @@ func (s *Store) Migrate() error {
 	m, err := migrate.NewWithDatabaseInstance(
 		"file:///migrations",
 		"postgres",
-		driver
+		driver,
 	)
 	if err != nil {
 		return err
