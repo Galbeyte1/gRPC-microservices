@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Galbeyte1/gRPC-microservices/internal/rocket"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -38,4 +39,19 @@ func New() (Store, error) {
 	return Store{
 		db: db,
 	}, nil
+}
+
+// GetRocketByID - returns a rocket from the database by a given ID
+func (s Store) GetRocketByID(id string) (rocket.Rocket, error) {
+	return rocket.Rocket{}, nil
+}
+
+// InsertRocket - inserts a new rocket into the database
+func (s Store) InsertRocket(rkt rocket.Rocket) (rocket.Rocket, error) {
+	return rocket.Rocket{}, nil
+}
+
+// DeleteRocket - deletes a rocket from the database by it's ID
+func (s Store) DeleteRocket(id string) error {
+	return nil
 }
