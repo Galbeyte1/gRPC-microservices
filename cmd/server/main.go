@@ -5,6 +5,7 @@ import (
 
 	"github.com/Galbeyte1/gRPC-microservices/internal/db"
 	"github.com/Galbeyte1/gRPC-microservices/internal/rocket"
+	"github.com/Galbeyte1/gRPC-microservices/internal/transport/grpc"
 )
 
 func Run() error {
@@ -23,8 +24,14 @@ func Run() error {
 		log.Println("Failed to run migrations")
 		return err
 	}
-	_ = rocket.New(rocketStore)
+	rktService := rocket.New(rocketStore)
 	log.Println("Migrations complete")
+
+	rktHandler := grpc.New(rktService)
+
+	if err := rktHandler.Serve(); err != nil {
+		return err
+	}
 	return nil
 }
 
