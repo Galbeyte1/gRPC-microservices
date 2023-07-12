@@ -33,7 +33,7 @@ func New(rktService RocketService) Handler {
 func (h Handler) Serve() error {
 	lis, err := net.Listen("tcp", ":50051")
 	if err != nil {
-		log.Println("could not listen on port 50051")
+		log.Println("failed to listen: %v", err)
 		return err
 	}
 
